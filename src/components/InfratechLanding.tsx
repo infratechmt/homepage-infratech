@@ -44,25 +44,37 @@ const projects = [
   },
 ];
 
-const prices = [
+const rentalPlans = [
   {
-    name: "Diaria",
-    price: "Sob consulta",
-    description: "Ideal para eventos, obras curtas e operacoes temporarias.",
-    features: ["Aluguel por dia", "Instalacao orientada", "Suporte via WhatsApp"],
-  },
-  {
-    name: "Mensal",
-    price: "Sob consulta",
-    description: "Para quem precisa de conectividade continua sem comprar a antena.",
-    features: ["Aluguel mensal", "Equipamento configurado", "Atendimento 24h"],
+    name: "Starlink Fixa",
+    description: "Para casas, empresas, fazendas, obras e pontos fixos de internet.",
     featured: true,
+    periods: [
+      { label: "1 dia", value: "R$ 80/dia" },
+      { label: "2 dias", value: "R$ 70/dia" },
+      { label: "3 dias", value: "R$ 50/dia" },
+      { label: "Acima de 7 dias", value: "R$ 30/dia" },
+    ],
+    features: [
+      "Voce escolhe o periodo de aluguel",
+      "Recebe o equipamento Starlink pronto para uso",
+      "Entrega e retirada feitas por nossos tecnicos",
+    ],
   },
   {
-    name: "Venda",
-    price: "Sob consulta",
-    description: "Compra de antena Starlink com apoio tecnico da Infratech.",
-    features: ["Venda de antenas", "Projeto de instalacao", "Suporte pos-venda"],
+    name: "Starlink Movel",
+    description: "Para quem precisa de internet por diarias em deslocamentos ou eventos.",
+    periods: [
+      { label: "5 diarias", value: "R$ 80/dia" },
+      { label: "10 diarias", value: "R$ 60/dia" },
+      { label: "15 diarias", value: "R$ 50/dia" },
+      { label: "20 diarias", value: "R$ 40/dia" },
+    ],
+    features: [
+      "Pacotes por quantidade de diarias",
+      "Equipamento liberado durante o periodo escolhido",
+      "Entrega e retirada feitas por nossos tecnicos",
+    ],
   },
 ];
 
@@ -236,8 +248,12 @@ export default function InfratechLanding() {
                   Tabela de precos
                 </p>
                 <h2 className="mt-3 text-3xl font-bold md:text-5xl">
-                  Escolha o formato do seu projeto.
+                  Aluguel de Starlink por diaria.
                 </h2>
+                <p className="mt-4 max-w-2xl leading-relaxed text-white/72">
+                  Escolha entre Starlink Fixa ou Starlink Movel. O valor final e calculado pelo
+                  periodo contratado.
+                </p>
               </div>
               <a
                 href={waLink}
@@ -250,8 +266,8 @@ export default function InfratechLanding() {
               </a>
             </div>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
-              {prices.map((plan) => (
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              {rentalPlans.map((plan) => (
                 <motion.article
                   key={plan.name}
                   initial={{ opacity: 0, y: 18 }}
@@ -265,8 +281,20 @@ export default function InfratechLanding() {
                   }`}
                 >
                   <h3 className="text-2xl font-bold">{plan.name}</h3>
-                  <p className="mt-3 text-3xl font-extrabold text-cyan-100">{plan.price}</p>
-                  <p className="mt-4 min-h-16 leading-relaxed text-white/72">{plan.description}</p>
+                  <p className="mt-3 leading-relaxed text-white/72">{plan.description}</p>
+
+                  <div className="mt-6 overflow-hidden rounded-2xl border border-white/10">
+                    {plan.periods.map((period) => (
+                      <div
+                        key={period.label}
+                        className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-white/10 bg-black/20 px-4 py-3 last:border-b-0"
+                      >
+                        <span className="text-white/78">{period.label}</span>
+                        <strong className="text-lg text-cyan-100">{period.value}</strong>
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="mt-6 space-y-3">
                     {plan.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-3 text-white/86">
@@ -277,6 +305,22 @@ export default function InfratechLanding() {
                   </div>
                 </motion.article>
               ))}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/7 p-5 backdrop-blur-xl">
+              <h3 className="text-xl font-semibold">Observacoes importantes</h3>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {[
+                  "Entrega e retirada em locais especificos, conforme sua localizacao.",
+                  "E necessario ter visibilidade para o ceu para instalar o equipamento.",
+                  "O aluguel inclui equipamento e suporte tecnico durante o periodo contratado.",
+                ].map((note) => (
+                  <div key={note} className="flex gap-3 text-white/78">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-cyan-300" />
+                    <span>{note}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>

@@ -8,11 +8,10 @@ import {
   MapPin,
   MessageCircle,
   RadioTower,
-  Router,
-  Satellite,
   ShieldCheck,
   Zap,
 } from "lucide-react";
+import logo from "../assets/logo.svg";
 import WebGLBackground from "./WebGLBackground";
 
 const WHATSAPP_PHONE = "5565933004215";
@@ -78,9 +77,8 @@ export default function InfratechLanding() {
 
       <header className="fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-black/65 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
-          <a href="#inicio" className="flex items-center gap-2 font-bold tracking-wide">
-            <Satellite className="h-6 w-6 text-cyan-300" />
-            Infratech
+          <a href="#inicio" className="flex items-center">
+            <img src={logo} alt="Infra Tech" className="h-10 w-auto" />
           </a>
 
           <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1 md:flex">
@@ -127,7 +125,7 @@ export default function InfratechLanding() {
                 transition={{ duration: 0.6, delay: 0.08 }}
                 className="mt-6 max-w-3xl text-5xl font-extrabold tracking-tight md:text-7xl"
               >
-                Infratech
+                INFRA TECH
               </motion.h1>
 
               <motion.p
